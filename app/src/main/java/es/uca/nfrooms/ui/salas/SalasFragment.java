@@ -40,6 +40,36 @@ public class SalasFragment extends Fragment {
             }
         });
 
+        TextView linkMiami = (TextView) root.findViewById(R.id.linkMiami);
+        linkMiami.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sala = new Intent(getActivity(), Sala.class);
+                sala.putExtra("sala", "Miami");
+                startActivity(sala);
+            }
+        });
+
+        TextView linkOtawa = (TextView) root.findViewById(R.id.linkOtawa);
+        linkOtawa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sala = new Intent(getActivity(), Sala.class);
+                sala.putExtra("sala", "Otawa");
+                startActivity(sala);
+            }
+        });
+
+        TextView linkBerlin = (TextView) root.findViewById(R.id.linkBerlin);
+        linkBerlin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sala = new Intent(getActivity(), Sala.class);
+                sala.putExtra("sala", "Berlin");
+                startActivity(sala);
+            }
+        });
+
         return root;
     }
 
