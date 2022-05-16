@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.Html;
+import android.text.SpannableString;
 import android.widget.TextView;
 
 public class Sala extends AppCompatActivity {
@@ -21,7 +22,8 @@ public class Sala extends AppCompatActivity {
 
         switch (sala){
             case "Kyoto":
-                descripcion.setText(Html.fromHtml("<b>Descripción:</b> ") + getResources().getString(R.string.desc_kyoto));
+                SpannableString desc = new SpannableString("Descripción: " + getResources().getString(R.string.desc_kyoto));
+
         }
     }
 }
