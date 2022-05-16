@@ -2,8 +2,8 @@
     <string name="app_name">NFrooms</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">NFRooms</string>
+    <string name="nav_header_subtitle">Salas insonorizadas a tu disposicion</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -13,4 +13,5 @@
     <string name="menu_localizacion">Localización</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="desc_kyoto">La sala Kyoto, es una sala insonorizada dedicada a espacios para baile y yoga.\n\nLa sala está equipada con un equipo de sonido, luces y una gran ventana con vistas a los jardines. Está disponible para clases y talleres.</string>
 </resources>
