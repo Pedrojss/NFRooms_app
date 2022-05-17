@@ -3,7 +3,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">NFRooms</string>
-    <string name="nav_header_subtitle">Salas insonorizadas a tu disposicion</string>
+    <string name="nav_header_subtitle">Disfruta el arte del silencio</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -16,6 +16,7 @@
 
     <!-- Informacion Salas -->>
     <string name="more_info"><u>Más información</u></string>
+    <string name="email"><u>contacto@nfrooms.com</u></string>
     <string name="desc_kyoto">La sala Kyoto, es una sala insonorizada dedicada a espacios para baile y yoga.\n\nLa sala está equipada con un equipo de sonido, luces y una gran ventana con vistas a los jardines. Está disponible para clases y talleres.</string>
     <string name="desc_miami">La sala Miami es una sala de estilo moderno con un par de elegantes mesas de trabajo y cómodas sillas de oficina que, junto con las lámparas de lectura, crean un ambiente relajado y tranquilo.</string>
     <string name="desc_otawa">La sala Otawa es una sala dedicada al trabajo individual, es ideal para estudiantes que necesitan un lugar tranquilo para estudiar o para aquellos que necesitan un lugar para trabajar en silencio.\n\n La sala se encuentra en el segundo piso.</string>
