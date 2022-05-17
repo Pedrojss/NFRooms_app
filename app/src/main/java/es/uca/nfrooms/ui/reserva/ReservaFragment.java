@@ -9,12 +9,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
+import es.uca.nfrooms.R;
+import es.uca.nfrooms.Reserva;
+import es.uca.nfrooms.ReservaAdapter;
 import es.uca.nfrooms.databinding.FragmentReservaBinding;
 
 public class ReservaFragment extends Fragment {
 
     private FragmentReservaBinding binding;
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -23,6 +34,21 @@ public class ReservaFragment extends Fragment {
 
         binding = FragmentReservaBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        mRecyclerView = (RecyclerView) root.findViewById(R.id.my_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        ArrayList<Reserva> reservas = new ArrayList<Reserva>();
+        ReservaAdapter reservaAdapter = new ReservaAdapter(reservas);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.setAdapter(reservaAdapter);
+
+        reservas.add(new Reserva(1,
+                "Bulbasaur"));
+        reservas.add(new Reserva(2,
+                "Ivysaur"));
+        reservas.add(new Reserva(3,
+                "Venusaur"));
 
         final TextView textView = binding.textReserva;
         reservaViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
