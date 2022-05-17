@@ -2,14 +2,22 @@ package es.uca.nfrooms;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileUtils;
 import android.text.Html;
 import android.text.SpannableString;
+import android.text.TextPaint;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -32,7 +40,33 @@ import com.itextpdf.text.pdf.draw.LineSeparator;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import org.apache.commons.io.*;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.pdf.PdfDocument;
+import android.os.Bundle;
+import android.os.Environment;
+import android.text.TextPaint;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
 
 public class Sala extends AppCompatActivity {
 
@@ -53,7 +87,7 @@ public class Sala extends AppCompatActivity {
         imprimir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                createPdf();
             }
         });
 
@@ -136,7 +170,6 @@ public class Sala extends AppCompatActivity {
     }
 
     public void createPdf() {
-
         String sala = getIntent().getExtras().getString("sala");
         TextView nombre = findViewById(R.id.nombre);
         TextView descripcion = findViewById(R.id.descripcion);
@@ -144,118 +177,106 @@ public class Sala extends AppCompatActivity {
         TextView precio = findViewById(R.id.precio);
         ImageView img = findViewById(R.id.imageView2);
 
-        String dest = Environment.getExternalStorageDirectory().toString() + "Sala" + sala + ".pdf";
+        //Datos del pdf
+        String TituloText = "Sala " + sala;
+        String DescText = descripcion.getText().toString();
 
-        if (new File(dest).exists()) {
-            new File(dest).delete();
+        if(checkPermission()){
+            Toast.makeText(this, "Permisos concedidos", Toast.LENGTH_LONG).show();
+        }
+        else{
+            requestPermissions();
         }
 
-        Context mContext = getApplicationContext();
+        PdfDocument pdfDocument = new PdfDocument();
+        Paint paint = new Paint();
+        TextPaint title = new TextPaint();
+        TextPaint description = new TextPaint();
+        TextPaint cap = new TextPaint();
+        TextPaint price = new TextPaint();
+        Bitmap bitmap, bitmapEscala;
+
+        PdfDocument.PageInfo paginaInfo = new PdfDocument.PageInfo.Builder(816, 1054, 1).create();
+        PdfDocument.Page pagina1 = pdfDocument.startPage(paginaInfo);
+
+        Canvas canvas = pagina1.getCanvas();
+
+        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        title.setTextSize(40);
+        canvas.drawText(TituloText, 20, 40, title);
+
+        //bitmap = BitmapFactory.decodeResource(getResources(), img.getId());
+        bitmap = ((BitmapDrawable)img.getDrawable()).getBitmap();
+        bitmapEscala = Bitmap.createScaledBitmap(bitmap, 200, 170, false);
+        canvas.drawBitmap(bitmapEscala, 40, 350, paint);
+
+
+        descripcion.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+        descripcion.setTextSize(18);
+
+        String[] arrDescripcion = DescText.split("\n");
+        int y = 80;
+        for(int i = 0 ; i < arrDescripcion.length ; i++) {
+            canvas.drawText(arrDescripcion[i], 20, y, description);
+            y += 15;
+        }
+
+        cap.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+        cap.setTextSize(16);
+        canvas.drawText(capacidad.getText().toString(), 20, 150, cap);
+
+        price.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+        price.setTextSize(16);
+        canvas.drawText(precio.getText().toString(), 20, 180, price);
+
+        pdfDocument.finishPage(pagina1);
+
+        File root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+
+        File folder = new File(root.getAbsolutePath() + "/" + "NFRooms");
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+
+        File file = new File(folder.getAbsolutePath() + "/" + sala + ".pdf");
+        //File file = new File(Environment.DIRECTORY_DOWNLOADS, "Sala.pdf");
+
         try {
-            /**
-             * Creating Document
-             */
-            Document document = new Document();
+            pdfDocument.writeTo(new FileOutputStream(file));
+            Toast.makeText(this, "Se creo el PDF correctamente", Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Toast.makeText(this, "Error al crear pdf - " + e.toString(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
 
-            // Location to save
-            PdfWriter.getInstance(document, new FileOutputStream(dest));
+        pdfDocument.close();
 
-            // Open to write
-            document.open();
+    }
 
-            // Document Settings
-            document.setPageSize(PageSize.A4);
-            document.addCreationDate();
-            document.addAuthor("NFRooms");
-            document.addCreator("Jose Luis Argudo Garrido");
+    private boolean checkPermission(){
+        int permission1 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
+        int permission2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
+        return permission1 == PackageManager.PERMISSION_GRANTED && permission2 == PackageManager.PERMISSION_GRANTED;
+    }
 
-            /***
-             * Variables for further use....
-             */
-            BaseColor mColorAccent = new BaseColor(0, 153, 204, 255);
-            float mHeadingFontSize = 20.0f;
-            float mValueFontSize = 26.0f;
+    private void requestPermissions(){
+        ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 200);
+    }
 
-            /**
-             * How to USE FONT....
-             */
-            BaseFont urName = BaseFont.createFont("assets/fonts/brandon_medium.otf", "UTF-8", BaseFont.EMBEDDED);
+    public void onRequestPermissionResult(int requestCode, String[] permissions, int[] grandResults){
+        if(requestCode == 200){
+            if(grandResults.length > 0){
+                boolean writeStorage = grandResults[0] == PackageManager.PERMISSION_GRANTED;
+                boolean readStorage = grandResults[1] == PackageManager.PERMISSION_GRANTED;
 
-            // LINE SEPARATOR
-            LineSeparator lineSeparator = new LineSeparator();
-            lineSeparator.setLineColor(new BaseColor(0, 0, 0, 68));
-
-            // Title Order Details...
-            // Adding Title....
-            Font mOrderDetailsTitleFont = new Font(urName, 36.0f, Font.NORMAL, BaseColor.BLACK);
-            Chunk mOrderDetailsTitleChunk = new Chunk("Sala " + sala, mOrderDetailsTitleFont);
-            Paragraph mOrderDetailsTitleParagraph = new Paragraph(mOrderDetailsTitleChunk);
-            mOrderDetailsTitleParagraph.setAlignment(Element.ALIGN_CENTER);
-            document.add(mOrderDetailsTitleParagraph);
-
-            // Fields of Order Details...
-            // Adding Chunks for Title and value
-            Font mOrderIdFont = new Font(urName, mHeadingFontSize, Font.NORMAL, mColorAccent);
-            Chunk mOrderIdChunk = new Chunk("Capacidad:", mOrderIdFont);
-            Paragraph mOrderIdParagraph = new Paragraph(mOrderIdChunk);
-            document.add(mOrderIdParagraph);
-
-            Font mOrderIdValueFont = new Font(urName, mValueFontSize, Font.NORMAL, BaseColor.BLACK);
-            Chunk mOrderIdValueChunk = new Chunk(capacidad.getText().toString(), mOrderIdValueFont);
-            Paragraph mOrderIdValueParagraph = new Paragraph(mOrderIdValueChunk);
-            document.add(mOrderIdValueParagraph);
-
-            // Adding Line Breakable Space....
-            document.add(new Paragraph(""));
-            // Adding Horizontal Line...
-            document.add(new Chunk(lineSeparator));
-            // Adding Line Breakable Space....
-            document.add(new Paragraph(""));
-
-            // Fields of Order Details...
-            Font mOrderDateFont = new Font(urName, mHeadingFontSize, Font.NORMAL, mColorAccent);
-            Chunk mOrderDateChunk = new Chunk("Precio:", mOrderDateFont);
-            Paragraph mOrderDateParagraph = new Paragraph(mOrderDateChunk);
-            document.add(mOrderDateParagraph);
-
-            Font mOrderDateValueFont = new Font(urName, mValueFontSize, Font.NORMAL, BaseColor.BLACK);
-            Chunk mOrderDateValueChunk = new Chunk(precio.getText().toString(), mOrderDateValueFont);
-            Paragraph mOrderDateValueParagraph = new Paragraph(mOrderDateValueChunk);
-            document.add(mOrderDateValueParagraph);
-
-            document.add(new Paragraph(""));
-            document.add(new Chunk(lineSeparator));
-            document.add(new Paragraph(""));
-
-            // Fields of Order Details...
-            Font mOrderAcNameFont = new Font(urName, mHeadingFontSize, Font.NORMAL, mColorAccent);
-            Chunk mOrderAcNameChunk = new Chunk("Descripcion", mOrderAcNameFont);
-            Paragraph mOrderAcNameParagraph = new Paragraph(mOrderAcNameChunk);
-            document.add(mOrderAcNameParagraph);
-
-            Font mOrderAcNameValueFont = new Font(urName, mValueFontSize, Font.NORMAL, BaseColor.BLACK);
-            Chunk mOrderAcNameValueChunk = new Chunk(descripcion.getText().toString(), mOrderAcNameValueFont);
-            Paragraph mOrderAcNameValueParagraph = new Paragraph(mOrderAcNameValueChunk);
-            document.add(mOrderAcNameValueParagraph);
-
-            document.add(new Paragraph(""));
-            document.add(new Chunk(lineSeparator));
-            document.add(new Paragraph(""));
-
-            document.close();
-
-            Toast.makeText(mContext, "Created... :)", Toast.LENGTH_SHORT).show();
-
-            AlertDialog correcto = new AlertDialog.Builder(mContext)
-                    .setTitle("PDF")
-                    .setMessage("PDF generado correctamente")
-                    .show();
-
-
-        } catch (IOException | DocumentException ie) {
-            Log.e("PDF","createPdf: Error " + ie.getLocalizedMessage());
-        } catch (ActivityNotFoundException ae) {
-            Toast.makeText(mContext, "No application found to open this file.", Toast.LENGTH_SHORT).show();
+                if(writeStorage && readStorage){
+                    Toast.makeText(this, "Permisos concedidos", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(this, "Permisos denegado", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            }
         }
     }
 }

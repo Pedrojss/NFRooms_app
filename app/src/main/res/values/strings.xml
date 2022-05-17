@@ -18,8 +18,8 @@
     <string name="more_info"><u>Más información</u></string>
     <string name="desc_kyoto">La sala Kyoto, es una sala insonorizada dedicada a espacios para baile y yoga.\n\nLa sala está equipada con un equipo de sonido, luces y una gran ventana con vistas a los jardines. Está disponible para clases y talleres.</string>
     <string name="desc_miami">La sala Miami es una sala de estilo moderno con un par de elegantes mesas de trabajo y cómodas sillas de oficina que, junto con las lámparas de lectura, crean un ambiente relajado y tranquilo.</string>
-    <string name="desc_otawa">La sala Otawa es una sala dedicada al trabajo individual, es ideal para estudiantes que necesitan un lugar tranquilo para estudiar o para aquellos que necesitan un lugar para trabajar en silencio. La sala se encuentra en el segundo piso.</string>
-    <string name="desc_berlin">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
+    <string name="desc_otawa">La sala Otawa es una sala dedicada al trabajo individual, es ideal para estudiantes que necesitan un lugar tranquilo para estudiar o para aquellos que necesitan un lugar para trabajar en silencio.\n\n La sala se encuentra en el segundo piso.</string>
+    <string name="desc_berlin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
 
 
 
