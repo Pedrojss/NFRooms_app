@@ -189,6 +189,7 @@ public class Sala extends AppCompatActivity {
         }
 
         PdfDocument pdfDocument = new PdfDocument();
+        Toast.makeText(this, "Generando PDF...", Toast.LENGTH_LONG).show();
         Paint paint = new Paint();
         TextPaint title = new TextPaint();
         TextPaint description = new TextPaint();
