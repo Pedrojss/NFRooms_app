@@ -172,7 +172,7 @@ public class Sala extends AppCompatActivity {
 
 
         descripcion.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-        descripcion.setTextSize(18);
+        descripcion.setTextSize(20);
 
         String[] arrDescripcion = DescText.split("\n");
         int y = 80;

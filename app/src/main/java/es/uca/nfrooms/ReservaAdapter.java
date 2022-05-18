@@ -2,6 +2,8 @@ package es.uca.nfrooms;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,8 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import es.uca.nfrooms.ui.reserva.ReservaFragment;
 
 public class ReservaAdapter extends RecyclerView.Adapter<ReservaAdapter.MyViewHolder>{
 
@@ -47,16 +51,26 @@ public class ReservaAdapter extends RecyclerView.Adapter<ReservaAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        holder.number.setText(String.valueOf(reservas.get(position).getNumber()));
-        holder.name.setText(reservas.get(position).getName());
+        holder.number.setText(String.valueOf(reservas.get(position).getId()));
+        holder.name.setText(reservas.get(position).getNombre());
         holder.show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CharSequence text = "You've clicked on " +
-                        reservas.get(position).getName();
-                int duration = Toast.LENGTH_LONG;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                Intent intent = new Intent(context, verReserva.class);
+                Bundle b = new Bundle();
+                b.putString("ID", reservas.get(position).getId());
+                b.putInt("TELEFONO", reservas.get(position).getTelefono());
+                b.putString("TIPOSALA", reservas.get(position).getTipoSala());
+                b.putString("NOMBRE", reservas.get(position).getNombre());
+                b.putString("DNI", reservas.get(position).getDNI());
+                b.putString("EMAIL", reservas.get(position).getEmail());
+                b.putString("HORAINI", reservas.get(position).getHoraIni());
+                b.putString("HORAFIN", reservas.get(position).getHoraFin());
+                b.putInt("NPERSONAS", reservas.get(position).getnPersonas());
+                b.putString("COMENTARIO", reservas.get(position).getComentario());
+                intent.putExtras(b);
+
+                context.startActivity(intent);
             }
         });
     }

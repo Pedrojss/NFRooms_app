@@ -33,7 +33,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_sala">Sala</string>
 
-    <!-- Informacion localizacion -->
     <string name="instalaciones">Foto del edificio de NFRooms</string>
     <string name="desc_loc">Dirección - NFRooms - Puerto Real \nAv. Universidad de Cádiz, 10, 11519 Puerto Real, Cádiz</string>
     <string name="hora_loc">Horario - NFRooms - Puerto Real \nAbrimos de lunes a sábado.\n09:00h a 21:00h.\nNo cerramos al mediodía.</string>
@@ -45,5 +44,12 @@
         <item>Java</item>
         <item>JavaScript</item>
         <item>VisualBasic</item>
+    </string-array>
+
+    <string-array name="salas">
+        <item>Sala Kyoto</item>
+        <item>Sala Miami</item>
+        <item>Sala Otawa</item>
+        <item>Sala Berlin</item>
     </string-array>
 </resources>
