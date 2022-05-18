@@ -1,14 +1,14 @@
-package es.uca.nfrooms.ui.nuevaReserva;
+package es.uca.nfrooms.ui.ConsultarReserva;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NuevaReservaViewModel extends ViewModel {
+public class ConsultarReservaViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public NuevaReservaViewModel() {
+    public ConsultarReservaViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("Nueva Reserva");
     }

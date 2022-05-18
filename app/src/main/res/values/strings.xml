@@ -11,7 +11,7 @@
     <string name="menu_salas">Salas</string>
     <string name="menu_reserva">Reservas</string>
     <string name="menu_localizacion">Localización</string>
-    <string name="menu_nuevaReserva">Nueva Reserva</string>
+    <string name="menu_consultarReserva">Consultar Reserva</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
