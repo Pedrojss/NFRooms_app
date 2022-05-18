@@ -7,12 +7,12 @@
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"s
+        android:layout_height="match_parent"
         android:id="@+id/map"
         tools:context=".MapsActivity"
         map:uiZoomControls="true"
         map:cameraZoom="15"
         map:uiRotateGestures="true"
-        android:name="com.google.android.gms.maps.SupportMapFragment" />
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

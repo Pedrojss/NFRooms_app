@@ -33,11 +33,10 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_sala">Sala</string>
 
-    <string-array name="languages">
-        <item>C</item>
-        <item>C++</item>
-        <item>Java</item>
-        <item>JavaScript</item>
-        <item>VisualBasic</item>
+    <string-array name="salas">
+        <item>Sala Kyoto</item>
+        <item>Sala Miami</item>
+        <item>Sala Otawa</item>
+        <item>Sala Berlin</item>
     </string-array>
 </resources>

@@ -46,13 +46,9 @@ public class ReservaFragment extends Fragment {
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setAdapter(reservaAdapter);
 
-        reservas.add(new Reserva(1,
-                "Bulbasaur"));
-        reservas.add(new Reserva(2,
-                "Ivysaur"));
-        reservas.add(new Reserva(3,
-                "Venusaur"));
-
+        reservas.add(new Reserva("1",
+                92329192, "Sala Kyoto", "Pepe", "8488484X", "pepe@gmail.com",
+                "29/01/2019", "20:10", "20:20", 9, "Picapica"));
 
         Button nuevaReserva = (Button)root.findViewById(R.id.nuevaReserva);
         nuevaReserva.setOnClickListener(new View.OnClickListener() {
