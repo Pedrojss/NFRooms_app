@@ -39,6 +39,7 @@ public class editarReserva extends AppCompatActivity {
     private EditText txtFecha;
     private EditText txtHoraIni;
     private EditText txtHoraFin;
+    private EditText txtnPersonas;
     private EditText txtComentario;
 
     @Override
@@ -78,6 +79,9 @@ public class editarReserva extends AppCompatActivity {
 
         txtHoraFin = (EditText)findViewById(R.id.editTxtHoraFin);
         txtHoraFin.setText(bundle.getString("HORAFIN"));
+
+        txtnPersonas = (EditText)findViewById(R.id.editTxtNPersonas);
+        txtnPersonas.setText(bundle.getString("NPERSONAS"));
 
         txtComentario = (EditText)findViewById(R.id.editTxtNombre3);
         txtComentario.setText(bundle.getString("COMENTARIO"));
