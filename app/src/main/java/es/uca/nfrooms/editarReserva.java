@@ -107,7 +107,7 @@ public class editarReserva extends AppCompatActivity {
                             hFin = f.getText().toString(),
                             fecha = fe.getText().toString(),
                             npers = np.getText().toString(),
-                            comentario = np.getText().toString();
+                            comentario = c.getText().toString();
 
                     JSONObject jsonObject = new JSONObject();
                     try {
