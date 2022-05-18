@@ -36,6 +36,9 @@
     <string name="instalaciones">Foto del edificio de NFRooms</string>
     <string name="desc_loc">Dirección - NFRooms - Puerto Real \nAv. Universidad de Cádiz, 10, 11519 Puerto Real, Cádiz</string>
     <string name="hora_loc">Horario - NFRooms - Puerto Real \nAbrimos de lunes a sábado.\n09:00h a 21:00h.\nNo cerramos al mediodía.</string>
+    <string name="consulta">Consultar</string>
+    <string name="tren">Red de trenes</string>
+    <string name="bus">Red de autobuses</string>
     <string name="botonMapa">Consultar mapa</string>
 
     <string-array name="languages">
