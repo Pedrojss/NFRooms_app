@@ -21,6 +21,9 @@
         android:requestLegacyExternalStorage="true"
         tools:targetApi="31" >
         <activity
+            android:name=".verReserva"
+            android:exported="false" />
+        <activity
             android:name=".crearReserva"
             android:exported="false" />
         <activity

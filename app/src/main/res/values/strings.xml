@@ -9,9 +9,8 @@
 
     <string name="menu_home">Inicio</string>
     <string name="menu_salas">Salas</string>
-    <string name="menu_reserva">Reservas</string>
+    <string name="menu_reserva">Reserva</string>
     <string name="menu_localizacion">Localización</string>
-    <string name="menu_consultarReserva">Consultar Reserva</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -34,7 +33,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_sala">Sala</string>
 
-    <!-- Informacion localizacion -->
     <string name="instalaciones">Foto del edificio de NFRooms</string>
     <string name="botonMapa">Consultar mapa</string>
 
@@ -44,5 +42,12 @@
         <item>Java</item>
         <item>JavaScript</item>
         <item>VisualBasic</item>
+    </string-array>
+
+    <string-array name="salas">
+        <item>Sala Kyoto</item>
+        <item>Sala Miami</item>
+        <item>Sala Otawa</item>
+        <item>Sala Berlin</item>
     </string-array>
 </resources>

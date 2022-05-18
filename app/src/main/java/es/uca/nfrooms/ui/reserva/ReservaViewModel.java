@@ -10,7 +10,7 @@ public class ReservaViewModel extends ViewModel {
 
     public ReservaViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Esto es reserva crack!");
+        mText.setValue("Aqui podrás ver tus reservas o crear una!");
     }
 
     public LiveData<String> getText() {

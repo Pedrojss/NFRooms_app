@@ -13,6 +13,6 @@
         map:uiZoomControls="true"
         map:cameraZoom="15"
         map:uiRotateGestures="true"
-        android:name="com.google.android.gms.maps.SupportMapFragment" />
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

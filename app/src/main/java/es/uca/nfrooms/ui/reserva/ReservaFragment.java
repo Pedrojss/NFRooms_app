@@ -2,7 +2,6 @@ package es.uca.nfrooms.ui.reserva;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,6 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
-import com.google.gson.JsonObject;
 import com.jacksonandroidnetworking.JacksonParserFactory;
 
 import org.json.JSONArray;
@@ -35,7 +33,6 @@ import es.uca.nfrooms.ReservaAdapter;
 import es.uca.nfrooms.crearReserva;
 import es.uca.nfrooms.databinding.FragmentReservaBinding;
 import okhttp3.OkHttpClient;
-import com.facebook.stetho.Stetho;
 
 public class ReservaFragment extends Fragment {
 
@@ -52,8 +49,6 @@ public class ReservaFragment extends Fragment {
 
         binding = FragmentReservaBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-
 
         /*Conexion con la API*/
 
