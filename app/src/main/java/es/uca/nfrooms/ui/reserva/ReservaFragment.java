@@ -1,9 +1,11 @@
 package es.uca.nfrooms.ui.reserva;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import es.uca.nfrooms.R;
 import es.uca.nfrooms.Reserva;
 import es.uca.nfrooms.ReservaAdapter;
+import es.uca.nfrooms.crearReserva;
 import es.uca.nfrooms.databinding.FragmentReservaBinding;
 
 public class ReservaFragment extends Fragment {
@@ -49,6 +52,16 @@ public class ReservaFragment extends Fragment {
                 "Ivysaur"));
         reservas.add(new Reserva(3,
                 "Venusaur"));
+
+
+        Button nuevaReserva = (Button)root.findViewById(R.id.nuevaReserva);
+        nuevaReserva.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), crearReserva.class);
+                startActivity(intent);
+            }
+        });
 
         final TextView textView = binding.textReserva;
         reservaViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);

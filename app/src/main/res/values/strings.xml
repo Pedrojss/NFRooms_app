@@ -22,9 +22,6 @@
     <string name="desc_otawa">La sala Otawa es una sala dedicada al trabajo individual, es ideal para estudiantes que necesitan un lugar tranquilo para estudiar o para aquellos que necesitan un lugar para trabajar en silencio.\n\n La sala se encuentra en el segundo piso.</string>
     <string name="desc_berlin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\n Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
 
-
-
-
     <string name="title_activity_info_sala">InfoSala</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -35,4 +32,12 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_sala">Sala</string>
+
+    <string-array name="languages">
+        <item>C</item>
+        <item>C++</item>
+        <item>Java</item>
+        <item>JavaScript</item>
+        <item>VisualBasic</item>
+    </string-array>
 </resources>
