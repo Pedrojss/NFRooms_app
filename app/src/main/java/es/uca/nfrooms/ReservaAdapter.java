@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,12 +26,12 @@ public class ReservaAdapter extends RecyclerView.Adapter<ReservaAdapter.MyViewHo
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView number;
         TextView name;
-        Button show;
+        ImageButton show;
         public MyViewHolder(View v) {
             super(v);
             number = (TextView) v.findViewById(R.id.number);
             name = (TextView) v.findViewById(R.id.name);
-            show = (Button) v.findViewById(R.id.show);
+            show = (ImageButton) v.findViewById(R.id.show);
         }
     }
 
@@ -51,7 +52,7 @@ public class ReservaAdapter extends RecyclerView.Adapter<ReservaAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        holder.number.setText(String.valueOf(reservas.get(position).getId()));
+        holder.number.setText(String.valueOf(reservas.get(position).getFecha()));
         holder.name.setText(reservas.get(position).getNombre());
         holder.show.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +60,7 @@ public class ReservaAdapter extends RecyclerView.Adapter<ReservaAdapter.MyViewHo
                 Intent intent = new Intent(context, verReserva.class);
                 Bundle b = new Bundle();
                 b.putString("ID", reservas.get(position).getId());
-                b.putInt("TELEFONO", reservas.get(position).getTelefono());
+                b.putString("TELEFONO", reservas.get(position).getTelefono());
                 b.putString("TIPOSALA", reservas.get(position).getTipoSala());
                 b.putString("NOMBRE", reservas.get(position).getNombre());
                 b.putString("DNI", reservas.get(position).getDNI());

@@ -3,7 +3,7 @@ package es.uca.nfrooms;
 public class Reserva {
 
     private String Id;
-    private int Telefono;
+    private String Telefono;
     private String TipoSala;
     private String Nombre;
     private String DNI;
@@ -15,7 +15,7 @@ public class Reserva {
     private String Comentario;
 
 
-    public Reserva(String Id, int Telefono, String TipoSala, String Nombre, String DNI, String Email,
+    public Reserva(String Id, String Telefono, String TipoSala, String Nombre, String DNI, String Email,
                     String Fecha, String HoraIni, String HoraFin, int nPersonas, String Comentario){
         this.Id = Id;
         this.Telefono = Telefono;
@@ -33,7 +33,7 @@ public class Reserva {
     public String getId() {
         return Id;
     }
-    public int getTelefono() {
+    public String getTelefono() {
         return Telefono;
     }
     public String getTipoSala() {
@@ -65,7 +65,7 @@ public class Reserva {
     public void setId(String Id) {
         this.Id = Id;
     }
-    public void setTelefono(int Telefono) {
+    public void setTelefono(String Telefono) {
         this.Telefono = Telefono;
     }
     public void setTipoSala(String TipoSala) {

@@ -75,7 +75,16 @@ public class ReservaFragment extends Fragment {
                         mRecyclerView.setAdapter(reservaAdapter);
                         for (int i=0; i < response.length(); i++) {
                             try {
-                                reservas.add(new Reserva(i+1, response.getJSONObject(i).getString("Nombre")));
+                                reservas.add(new Reserva(response.getJSONObject(i).getString("_id"),
+                                        response.getJSONObject(i).getString("telefono"),
+                                        response.getJSONObject(i).getString("sala"),
+                                        response.getJSONObject(i).getString("Nombre"),
+                                        response.getJSONObject(i).getString("dni"),
+                                        response.getJSONObject(i).getString("email"),
+                                        response.getJSONObject(i).getString("fecha"),
+                                        response.getJSONObject(i).getString("horaini"),
+                                        response.getJSONObject(i).getString("horafin"),0,""
+                                        ));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
