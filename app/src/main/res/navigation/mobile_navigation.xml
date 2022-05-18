@@ -30,6 +30,5 @@
         tools:layout="@layout/fragment_localizacion" />
     <fragment
         android:id="@+id/nav_ConsultarReserva"
-        android:name="es.uca.nfrooms.ui.ConsultarReserva.ConsultarReservaFragment"
-        android:label="@string/menu_consultarReserva" />
+        android:name="es.uca.nfrooms.ui.ConsultarReserva.ConsultarReservaFragment" />
 </navigation>
