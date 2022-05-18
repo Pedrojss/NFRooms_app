@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:map="http://schemas.android.com/apk/res-auto">
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent"s
         android:id="@+id/map"
         tools:context=".MapsActivity"
+        map:uiZoomControls="true"
+        map:cameraZoom="15"
+        map:uiRotateGestures="true"
         android:name="com.google.android.gms.maps.SupportMapFragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
