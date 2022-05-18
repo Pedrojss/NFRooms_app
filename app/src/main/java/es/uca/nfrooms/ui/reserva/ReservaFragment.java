@@ -7,12 +7,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.google.gson.JsonObject;
+import com.jacksonandroidnetworking.JacksonParserFactory;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 
@@ -46,12 +57,33 @@ public class ReservaFragment extends Fragment {
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setAdapter(reservaAdapter);
 
-        reservas.add(new Reserva(1,
-                "Bulbasaur"));
-        reservas.add(new Reserva(2,
-                "Ivysaur"));
-        reservas.add(new Reserva(3,
-                "Venusaur"));
+
+        /*Conexion con la API*/
+        AndroidNetworking.initialize(getContext());
+        AndroidNetworking.setParserFactory(new JacksonParserFactory());
+        AndroidNetworking.get("https://nfrooms.herokuapp.com/reservas")
+                .setPriority(Priority.LOW)
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        for (int i=0; i < response.length(); i++) {
+                            try {
+                                Toast.makeText(getContext(), response.getJSONObject(i).toString(), Toast.LENGTH_LONG).show();
+                                reservas.add(new Reserva(i, response.getJSONObject(i).getString("Nombre")));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        Toast.makeText(getContext(), "Error - " + error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
 
 
         Button nuevaReserva = (Button)root.findViewById(R.id.nuevaReserva);
