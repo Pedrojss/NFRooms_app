@@ -61,10 +61,11 @@ public class ReservaAdapter extends RecyclerView.Adapter<ReservaAdapter.MyViewHo
                 Bundle b = new Bundle();
                 b.putString("ID", reservas.get(position).getId());
                 b.putString("TELEFONO", reservas.get(position).getTelefono());
-                b.putString("TIPOSALA", reservas.get(position).getTipoSala());
+                b.putString("SALA", reservas.get(position).getTipoSala());
                 b.putString("NOMBRE", reservas.get(position).getNombre());
                 b.putString("DNI", reservas.get(position).getDNI());
                 b.putString("EMAIL", reservas.get(position).getEmail());
+                b.putString("FECHA", reservas.get(position).getFecha());
                 b.putString("HORAINI", reservas.get(position).getHoraIni());
                 b.putString("HORAFIN", reservas.get(position).getHoraFin());
                 b.putInt("NPERSONAS", reservas.get(position).getnPersonas());
