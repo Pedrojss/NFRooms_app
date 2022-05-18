@@ -33,6 +33,7 @@ public class verReserva extends AppCompatActivity {
     private TextView txtNPersonas;
     private TextView txtComentario;
     private Button btnEliminar;
+    private Button btnEditar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,5 +92,16 @@ public class verReserva extends AppCompatActivity {
                         });
             }
         });
+
+        btnEditar = (Button)findViewById(R.id.btnEditar);
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(verReserva.this, editarReserva.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
 }
+
