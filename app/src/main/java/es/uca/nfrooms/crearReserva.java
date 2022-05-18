@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -37,12 +38,35 @@ public class crearReserva extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_creserva);
 
-            Spinner spinnerLanguages=findViewById(R.id.spSalas);
+
+            Spinner spSala=findViewById(R.id.spSalas);
+
 
             ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.salas, android.R.layout.simple_spinner_item);
 
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-            spinnerLanguages.setAdapter(adapter);
+            spSala.setAdapter(adapter);
+
+            String sala = getIntent().getExtras().getString("sala");
+            if(sala != null){
+                Log.d("Sala", sala);
+                switch (sala){
+                    case "Kyoto":
+                        spSala.setSelection(0);
+                        break;
+                    case "Miami":
+                        spSala.setSelection(1);
+                        break;
+                    case "Otawa":
+                        spSala.setSelection(2);
+                        break;
+                    case "Berlin":
+                        spSala.setSelection(3);
+                        break;
+                    default:
+                        break;
+                }
+            }
 
             txtSaludo = (TextView)findViewById(R.id.textView2);
             txtSaludo.setText("Crea aqui tu reserva!");
@@ -85,7 +109,7 @@ public class crearReserva extends AppCompatActivity {
                             jsonObject.put("fecha", fecha);
                             jsonObject.put("npersonas", npers);
                             jsonObject.put("comentario", comentario);
-                            jsonObject.put("sala", spinnerLanguages.getSelectedItem());
+                            jsonObject.put("sala", spSala.getSelectedItem());
 
                         } catch (JSONException err) {
                             err.printStackTrace();
@@ -118,12 +142,12 @@ public class crearReserva extends AppCompatActivity {
                 }
             });
 
-            Spinner spinner = findViewById(R.id.spSalas);
+
             ImageView imgSala = findViewById(R.id.imgsala);
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            spSala.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                    switch(spinner.getSelectedItem().toString()){
+                    switch(spSala.getSelectedItem().toString()){
                         case "Sala Kyoto":
                             imgSala.setImageDrawable(getResources().getDrawable(R.drawable.kyoto));
                             break;

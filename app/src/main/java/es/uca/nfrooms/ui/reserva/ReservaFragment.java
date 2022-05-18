@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,38 @@ public class ReservaFragment extends Fragment {
         binding = FragmentReservaBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        actualizarReservas(root);
+
+        ImageButton reloadBtn = root.findViewById(R.id.reloadBtn);
+        reloadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actualizarReservas(root);
+            }
+        });
+
+        Button nuevaReserva = (Button)root.findViewById(R.id.nuevaReserva);
+        nuevaReserva.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), crearReserva.class);
+                intent.putExtra("sala", "");
+                startActivity(intent);
+            }
+        });
+
+        final TextView textView = binding.textReserva;
+        reservaViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        return root;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
+    private void actualizarReservas(View root){
         /*Conexion con la API*/
 
         AndroidNetworking.initialize(getContext());
@@ -85,7 +118,7 @@ public class ReservaFragment extends Fragment {
                                         response.getJSONObject(i).getString("fecha"),
                                         response.getJSONObject(i).getString("horaini"),
                                         response.getJSONObject(i).getString("horafin"),0,""
-                                        ));
+                                ));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -96,25 +129,5 @@ public class ReservaFragment extends Fragment {
                         Toast.makeText(getContext(), "Error - " + error.toString(), Toast.LENGTH_LONG).show();
                     }
                 });
-
-
-        Button nuevaReserva = (Button)root.findViewById(R.id.nuevaReserva);
-        nuevaReserva.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), crearReserva.class);
-                startActivity(intent);
-            }
-        });
-
-        final TextView textView = binding.textReserva;
-        reservaViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }
