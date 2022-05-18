@@ -1,9 +1,24 @@
 package es.uca.nfrooms;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class verReserva extends AppCompatActivity {
 
@@ -17,6 +32,7 @@ public class verReserva extends AppCompatActivity {
     private TextView txtHoraFin;
     private TextView txtNPersonas;
     private TextView txtComentario;
+    private Button btnEliminar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,5 +70,26 @@ public class verReserva extends AppCompatActivity {
 
         txtComentario = (TextView)findViewById(R.id.txtComentario3);
         txtComentario.setText(bundle.getString("COMENTARIO"));
+
+        btnEliminar = (Button)findViewById(R.id.btnEliminar);
+        btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AndroidNetworking.delete("https://nfrooms.herokuapp.com/reservas/" + bundle.getString("ID"))
+                        .setPriority(Priority.MEDIUM)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Toast.makeText(verReserva.this , "Reserva eliminada", Toast.LENGTH_LONG).show();
+                                finish();
+                            }
+                            @Override
+                            public void onError(ANError error) {
+                                Toast.makeText(verReserva.this , "Error - " + error.toString(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+            }
+        });
     }
 }

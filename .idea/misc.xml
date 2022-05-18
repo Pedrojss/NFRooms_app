@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Ordep/AndroidStudioProjects/NFRooms_app/app/src/main/res/layout/activity_creserva.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Ordep/AndroidStudioProjects/NFRooms_app/app/src/main/res/layout/activity_sala.xml" value="0.16847826086956522" />
         <entry key="..\:/Users/Ordep/AndroidStudioProjects/NFRooms_app/app/src/main/res/layout/activity_vreserva.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/Ordep/AndroidStudioProjects/NFRooms_app/app/src/main/res/layout/fragment_localizacion.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Ordep/AndroidStudioProjects/NFRooms_app/app/src/main/res/layout/item.xml" value="0.365625" />
@@ -26,7 +27,6 @@
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.35208333333333336" />
-        <entry key="app/src/main/res/layout/fragment_localizacion.xml" value="0.24427083333333333" />
         <entry key="app/src/main/res/layout/fragment_reserva.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_salas.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/layout/item.xml" value="0.2916666666666667" />
