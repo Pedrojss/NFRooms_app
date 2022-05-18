@@ -68,7 +68,7 @@ public class ReservaAdapter extends RecyclerView.Adapter<ReservaAdapter.MyViewHo
                 b.putString("FECHA", reservas.get(position).getFecha());
                 b.putString("HORAINI", reservas.get(position).getHoraIni());
                 b.putString("HORAFIN", reservas.get(position).getHoraFin());
-                b.putInt("NPERSONAS", reservas.get(position).getnPersonas());
+                b.putString("NPERSONAS", reservas.get(position).getnPersonas());
                 b.putString("COMENTARIO", reservas.get(position).getComentario());
                 intent.putExtras(b);
 

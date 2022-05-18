@@ -117,7 +117,9 @@ public class ReservaFragment extends Fragment {
                                         response.getJSONObject(i).getString("email"),
                                         response.getJSONObject(i).getString("fecha"),
                                         response.getJSONObject(i).getString("horaini"),
-                                        response.getJSONObject(i).getString("horafin"),0,""
+                                        response.getJSONObject(i).getString("horafin"),
+                                        response.getJSONObject(i).getString("npersonas"),
+                                        response.getJSONObject(i).getString("comentario")
                                 ));
                             } catch (JSONException e) {
                                 e.printStackTrace();

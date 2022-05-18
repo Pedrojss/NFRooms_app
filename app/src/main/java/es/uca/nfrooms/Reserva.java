@@ -11,12 +11,12 @@ public class Reserva {
     private String Fecha;
     private String HoraIni;
     private String HoraFin;
-    private int nPersonas;
+    private String nPersonas;
     private String Comentario;
 
 
     public Reserva(String Id, String Telefono, String TipoSala, String Nombre, String DNI, String Email,
-                    String Fecha, String HoraIni, String HoraFin, int nPersonas, String Comentario){
+                    String Fecha, String HoraIni, String HoraFin, String nPersonas, String Comentario){
         this.Id = Id;
         this.Telefono = Telefono;
         this.TipoSala = TipoSala;
@@ -55,7 +55,7 @@ public class Reserva {
     public String getHoraFin() {
         return HoraFin;
     }
-    public int getnPersonas() {
+    public String getnPersonas() {
         return nPersonas;
     }
     public String getComentario() {
@@ -85,7 +85,7 @@ public class Reserva {
     public void setHoraFin(String HoraFin) {
         this.HoraFin = HoraFin;
     }
-    public void setnPersonas(int nPersonas) {
+    public void setnPersonas(String nPersonas) {
         this.nPersonas = nPersonas;
     }
     public void setComentario(String Comentario) {
