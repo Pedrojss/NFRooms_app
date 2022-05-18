@@ -33,6 +33,10 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_sala">Sala</string>
 
+    <!-- Informacion localizacion -->
+    <string name="instalaciones">Foto del edificio de NFRooms</string>
+    <string name="botonMapa">Consultar mapa</string>
+
     <string-array name="languages">
         <item>C</item>
         <item>C++</item>
